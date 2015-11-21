@@ -1,0 +1,13 @@
+[package]
+name = "iconv"
+version = "0.0.1"
+authors = ["y-stm <anergy.25110321@gmail.com>"]
+[lib]
+name = "iconv"
+path = "src/lib.rs"
+
+[dependencies]
+libc = "*"
+errno = "*"
+log = "*"
+env_logger = "*"
