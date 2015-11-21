@@ -1,0 +1,32 @@
+= iconv binding for Rust
+
+== How to install
+
+[source, toml]
+----
+iconv = { git = 'https://github.com/y-stm/rust-iconv' }
+----
+
+== How to use
+`Iconv::new(encoding_to, encoding_from)` to create new iconv object.
+If you need UTF-8 decoder just for reading text files which are not encoded in UTF-8,
+`ToUTF8Conv::new(encoding_from)` will be suit. 
+
+=== Using `Iconv`
+[source, rust]
+----
+// suppose `input` is cp932 encoded text which has the type (&[u8])
+let mut iconv = Iconv::new("utf-8", "cp932").unwrap();
+let mut buf = Vec::new();
+iconv.convert(&input, &mut buf);
+// now `buf` has UTF-8 encoded text
+let output_utf8 = String::from_utf8(buf);
+----
+
+=== Using `ToUTF8Conv`
+[source, rust]
+----
+// suppose `input` is cp932 encoded text
+let mut convet_to_utf8 = ToUTF8Conv("utf-8");
+let output_utf8 = convert_to_utf8.convert(&input).unwrap();
+----
